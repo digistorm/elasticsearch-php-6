@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,7 +15,7 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Util;
+namespace Digistorm\Util;
 
 use Exception;
 
@@ -31,7 +31,7 @@ class ClientEndpoint extends NamespaceEndpoint
     protected $namespace = [];
     protected $version; /* Elasticsearch version used to generate the class */
     protected $buildhash; /* Elasticsearch build hash used to generate the class */
-    
+
     public function __construct(array $namespace, string $version, string $buildhash)
     {
         $this->namespace = $namespace;
@@ -51,7 +51,7 @@ class ClientEndpoint extends NamespaceEndpoint
             if (empty($name)) {
                 continue;
             }
-            $useNamespace .= sprintf("use Elasticsearch\Namespaces\%sNamespace;\n", NamespaceEndpoint::normalizeName($name));
+            $useNamespace .= sprintf("use Digistorm\Namespaces\%sNamespace;\n", NamespaceEndpoint::normalizeName($name));
         }
         $class = str_replace(':use-namespaces', $useNamespace, $class);
 

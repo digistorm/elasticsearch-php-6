@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -14,38 +14,38 @@
  */
 declare(strict_types = 1);
 
-namespace Elasticsearch;
+namespace Digistorm;
 
-use Elasticsearch\Common\Exceptions\BadMethodCallException;
-use Elasticsearch\Common\Exceptions\InvalidArgumentException;
-use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Elasticsearch\Common\Exceptions\TransportException;
-use Elasticsearch\Endpoints\AbstractEndpoint;
-use Elasticsearch\Namespaces\AbstractNamespace;
-use Elasticsearch\Namespaces\NamespaceBuilderInterface;
-use Elasticsearch\Namespaces\BooleanRequestWrapper;
-use Elasticsearch\Namespaces\CatNamespace;
-use Elasticsearch\Namespaces\ClusterNamespace;
-use Elasticsearch\Namespaces\IndicesNamespace;
-use Elasticsearch\Namespaces\IngestNamespace;
-use Elasticsearch\Namespaces\NodesNamespace;
-use Elasticsearch\Namespaces\SnapshotNamespace;
-use Elasticsearch\Namespaces\TasksNamespace;
-use Elasticsearch\Namespaces\CcrNamespace;
-use Elasticsearch\Namespaces\IlmNamespace;
-use Elasticsearch\Namespaces\SecurityNamespace;
-use Elasticsearch\Namespaces\GraphNamespace;
-use Elasticsearch\Namespaces\XpackNamespace;
-use Elasticsearch\Namespaces\LicenseNamespace;
-use Elasticsearch\Namespaces\MigrationNamespace;
-use Elasticsearch\Namespaces\MlNamespace;
-use Elasticsearch\Namespaces\MonitoringNamespace;
-use Elasticsearch\Namespaces\RollupNamespace;
-use Elasticsearch\Namespaces\SqlNamespace;
-use Elasticsearch\Namespaces\SslNamespace;
-use Elasticsearch\Namespaces\WatcherNamespace;
+use Digistorm\Common\Exceptions\BadMethodCallException;
+use Digistorm\Common\Exceptions\BadRequest400Exception;
+use Digistorm\Common\Exceptions\InvalidArgumentException;
+use Digistorm\Common\Exceptions\Missing404Exception;
+use Digistorm\Common\Exceptions\NoNodesAvailableException;
+use Digistorm\Common\Exceptions\TransportException;
+use Digistorm\Endpoints\AbstractEndpoint;
+use Digistorm\Namespaces\AbstractNamespace;
+use Digistorm\Namespaces\BooleanRequestWrapper;
+use Digistorm\Namespaces\CatNamespace;
+use Digistorm\Namespaces\CcrNamespace;
+use Digistorm\Namespaces\ClusterNamespace;
+use Digistorm\Namespaces\GraphNamespace;
+use Digistorm\Namespaces\IlmNamespace;
+use Digistorm\Namespaces\IndicesNamespace;
+use Digistorm\Namespaces\IngestNamespace;
+use Digistorm\Namespaces\LicenseNamespace;
+use Digistorm\Namespaces\MigrationNamespace;
+use Digistorm\Namespaces\MlNamespace;
+use Digistorm\Namespaces\MonitoringNamespace;
+use Digistorm\Namespaces\NamespaceBuilderInterface;
+use Digistorm\Namespaces\NodesNamespace;
+use Digistorm\Namespaces\RollupNamespace;
+use Digistorm\Namespaces\SecurityNamespace;
+use Digistorm\Namespaces\SnapshotNamespace;
+use Digistorm\Namespaces\SqlNamespace;
+use Digistorm\Namespaces\SslNamespace;
+use Digistorm\Namespaces\TasksNamespace;
+use Digistorm\Namespaces\WatcherNamespace;
+use Digistorm\Namespaces\XpackNamespace;
 
 /**
  * Class Client
@@ -81,102 +81,102 @@ class Client
      * @var CatNamespace
      */
     protected $cat;
-    
+
     /**
      * @var ClusterNamespace
      */
     protected $cluster;
-    
+
     /**
      * @var IndicesNamespace
      */
     protected $indices;
-    
+
     /**
      * @var IngestNamespace
      */
     protected $ingest;
-    
+
     /**
      * @var NodesNamespace
      */
     protected $nodes;
-    
+
     /**
      * @var SnapshotNamespace
      */
     protected $snapshot;
-    
+
     /**
      * @var TasksNamespace
      */
     protected $tasks;
-    
+
     /**
      * @var CcrNamespace
      */
     protected $ccr;
-    
+
     /**
      * @var IlmNamespace
      */
     protected $ilm;
-    
+
     /**
      * @var SecurityNamespace
      */
     protected $security;
-    
+
     /**
      * @var GraphNamespace
      */
     protected $graph;
-    
+
     /**
      * @var XpackNamespace
      */
     protected $xpack;
-    
+
     /**
      * @var LicenseNamespace
      */
     protected $license;
-    
+
     /**
      * @var MigrationNamespace
      */
     protected $migration;
-    
+
     /**
      * @var MlNamespace
      */
     protected $ml;
-    
+
     /**
      * @var MonitoringNamespace
      */
     protected $monitoring;
-    
+
     /**
      * @var RollupNamespace
      */
     protected $rollup;
-    
+
     /**
      * @var SqlNamespace
      */
     protected $sql;
-    
+
     /**
      * @var SslNamespace
      */
     protected $ssl;
-    
+
     /**
      * @var WatcherNamespace
      */
     protected $watcher;
-    
+
 
     /**
      * Client constructor
@@ -367,7 +367,7 @@ class Client
         $this->verifyNotNullOrEmpty("id", $id);
         $this->verifyNotNullOrEmpty("type", $type);
         $this->verifyNotNullOrEmpty("index", $index);
-        
+
         $endpointBuilder = $this->endpoints;
         $endpoint = $endpointBuilder('Delete');
         $endpoint->setParams($params);
@@ -1468,7 +1468,7 @@ class Client
             }
         }
     }
-    
+
     /**
      * @return callable|array
      */

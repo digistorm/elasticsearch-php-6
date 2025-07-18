@@ -5,6 +5,6 @@
 This is a complete list of available namespaces:
 
 * <<Elasticsearch, Elasticsearch>>
-* <<Elasticsearch_Namespaces, Elasticsearch\Namespaces>>
+* <<Elasticsearch_Namespaces, Digistorm\Namespaces>>
 include::Elasticsearch.asciidoc[]
 include::Elasticsearch/Namespaces.asciidoc[]

@@ -1,7 +1,7 @@
 
 
 [[Elasticsearch_Namespaces_SnapshotNamespace]]
-=== Elasticsearch\Namespaces\SnapshotNamespace
+=== Digistorm\Namespaces\SnapshotNamespace
 
 
 

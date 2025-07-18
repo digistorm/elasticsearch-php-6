@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -16,27 +16,27 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Connections;
+namespace Digistorm\Connections;
 
-use Elasticsearch\Client;
-use Elasticsearch\Common\Exceptions\AlreadyExpiredException;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception;
-use Elasticsearch\Common\Exceptions\Conflict409Exception;
-use Elasticsearch\Common\Exceptions\Curl\CouldNotConnectToHost;
-use Elasticsearch\Common\Exceptions\Curl\CouldNotResolveHostException;
-use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
-use Elasticsearch\Common\Exceptions\Forbidden403Exception;
-use Elasticsearch\Common\Exceptions\MaxRetriesException;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Elasticsearch\Common\Exceptions\NoDocumentsToGetException;
-use Elasticsearch\Common\Exceptions\NoShardAvailableException;
-use Elasticsearch\Common\Exceptions\RequestTimeout408Exception;
-use Elasticsearch\Common\Exceptions\RoutingMissingException;
-use Elasticsearch\Common\Exceptions\ScriptLangNotSupportedException;
-use Elasticsearch\Common\Exceptions\ServerErrorResponseException;
-use Elasticsearch\Common\Exceptions\TransportException;
-use Elasticsearch\Serializers\SerializerInterface;
-use Elasticsearch\Transport;
+use Digistorm\Client;
+use Digistorm\Common\Exceptions\AlreadyExpiredException;
+use Digistorm\Common\Exceptions\BadRequest400Exception;
+use Digistorm\Common\Exceptions\Conflict409Exception;
+use Digistorm\Common\Exceptions\Curl\CouldNotConnectToHost;
+use Digistorm\Common\Exceptions\Curl\CouldNotResolveHostException;
+use Digistorm\Common\Exceptions\Curl\OperationTimeoutException;
+use Digistorm\Common\Exceptions\Forbidden403Exception;
+use Digistorm\Common\Exceptions\MaxRetriesException;
+use Digistorm\Common\Exceptions\Missing404Exception;
+use Digistorm\Common\Exceptions\NoDocumentsToGetException;
+use Digistorm\Common\Exceptions\NoShardAvailableException;
+use Digistorm\Common\Exceptions\RequestTimeout408Exception;
+use Digistorm\Common\Exceptions\RoutingMissingException;
+use Digistorm\Common\Exceptions\ScriptLangNotSupportedException;
+use Digistorm\Common\Exceptions\ServerErrorResponseException;
+use Digistorm\Common\Exceptions\TransportException;
+use Digistorm\Serializers\SerializerInterface;
+use Digistorm\Transport;
 use GuzzleHttp\Ring\Core;
 use GuzzleHttp\Ring\Exception\ConnectException;
 use GuzzleHttp\Ring\Exception\RingException;
@@ -105,7 +105,7 @@ class Connection implements ConnectionInterface
      * @param callable $handler
      * @param array $hostDetails
      * @param array $connectionParams Array of connection-specific parameters
-     * @param \Elasticsearch\Serializers\SerializerInterface $serializer
+     * @param \Digistorm\Serializers\SerializerInterface $serializer
      * @param \Psr\Log\LoggerInterface $log              Logger object
      * @param \Psr\Log\LoggerInterface $trace
      */
@@ -171,7 +171,7 @@ class Connection implements ConnectionInterface
      * @param array $params
      * @param null $body
      * @param array $options
-     * @param \Elasticsearch\Transport $transport
+     * @param \Digistorm\Transport $transport
      * @return mixed
      */
     public function performRequest($method, $uri, $params = null, $body = null, $options = [], Transport $transport = null)
@@ -569,7 +569,7 @@ class Connection implements ConnectionInterface
     /**
      * @param array $request
      * @param array $response
-     * @return \Elasticsearch\Common\Exceptions\Curl\CouldNotConnectToHost|\Elasticsearch\Common\Exceptions\Curl\CouldNotResolveHostException|\Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException|\Elasticsearch\Common\Exceptions\MaxRetriesException
+     * @return \Digistorm\Common\Exceptions\Curl\CouldNotConnectToHost|\Digistorm\Common\Exceptions\Curl\CouldNotResolveHostException|\Digistorm\Common\Exceptions\Curl\OperationTimeoutException|\Digistorm\Common\Exceptions\MaxRetriesException
      */
     protected function getCurlRetryException($request, $response)
     {
@@ -622,7 +622,7 @@ class Connection implements ConnectionInterface
      * @param array $request
      * @param array $response
      * @param array $ignore
-     * @throws \Elasticsearch\Common\Exceptions\AlreadyExpiredException|\Elasticsearch\Common\Exceptions\BadRequest400Exception|\Elasticsearch\Common\Exceptions\Conflict409Exception|\Elasticsearch\Common\Exceptions\Forbidden403Exception|\Elasticsearch\Common\Exceptions\Missing404Exception|\Elasticsearch\Common\Exceptions\ScriptLangNotSupportedException
+     * @throws \Digistorm\Common\Exceptions\AlreadyExpiredException|\Digistorm\Common\Exceptions\BadRequest400Exception|\Digistorm\Common\Exceptions\Conflict409Exception|\Digistorm\Common\Exceptions\Forbidden403Exception|\Digistorm\Common\Exceptions\Missing404Exception|\Digistorm\Common\Exceptions\ScriptLangNotSupportedException
      */
     private function process4xxError($request, $response, $ignore)
     {
@@ -675,7 +675,7 @@ class Connection implements ConnectionInterface
      * @param array $request
      * @param array $response
      * @param array $ignore
-     * @throws \Elasticsearch\Common\Exceptions\NoDocumentsToGetException|\Elasticsearch\Common\Exceptions\NoShardAvailableException|\Elasticsearch\Common\Exceptions\RoutingMissingException|\Elasticsearch\Common\Exceptions\ServerErrorResponseException
+     * @throws \Digistorm\Common\Exceptions\NoDocumentsToGetException|\Digistorm\Common\Exceptions\NoShardAvailableException|\Digistorm\Common\Exceptions\RoutingMissingException|\Digistorm\Common\Exceptions\ServerErrorResponseException
      */
     private function process5xxError($request, $response, $ignore)
     {
@@ -719,12 +719,12 @@ class Connection implements ConnectionInterface
 
     private function tryDeserialize400Error($response)
     {
-        return $this->tryDeserializeError($response, 'Elasticsearch\Common\Exceptions\BadRequest400Exception');
+        return $this->tryDeserializeError($response, 'Digistorm\Common\Exceptions\BadRequest400Exception');
     }
 
     private function tryDeserialize500Error($response)
     {
-        return $this->tryDeserializeError($response, 'Elasticsearch\Common\Exceptions\ServerErrorResponseException');
+        return $this->tryDeserializeError($response, 'Digistorm\Common\Exceptions\ServerErrorResponseException');
     }
 
     private function tryDeserializeError($response, $errorClass)
@@ -775,7 +775,7 @@ class Connection implements ConnectionInterface
     {
         $phpSemVersion = sprintf("%d.%d.%d", PHP_MAJOR_VERSION, PHP_MINOR_VERSION, PHP_RELEASE_VERSION);
         // Reduce the size in case of '-snapshot' version (using 'p' as pre-release)
-        $clientVersion = str_replace('-snapshot', '-p', strtolower(Client::VERSION)); 
+        $clientVersion = str_replace('-snapshot', '-p', strtolower(Client::VERSION));
         $clientMeta = sprintf(
             "es=%s,php=%s,t=%s,a=%d",
             $clientVersion,

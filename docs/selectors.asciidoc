@@ -18,7 +18,7 @@ The `RoundRobinSelector` is default, but if you wish to explicitily configure it
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSelector('\Elasticsearch\ConnectionPool\Selectors\RoundRobinSelector')
+            ->setSelector('\Digistorm\ConnectionPool\Selectors\RoundRobinSelector')
             ->build();
 ----
 
@@ -46,7 +46,7 @@ If you wish to use this selector, you may do so with:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSelector('\Elasticsearch\ConnectionPool\Selectors\StickyRoundRobinSelector')
+            ->setSelector('\Digistorm\ConnectionPool\Selectors\StickyRoundRobinSelector')
             ->build();
 ----
 
@@ -61,7 +61,7 @@ If you wish to use this selector, you may do so with:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSelector('\Elasticsearch\ConnectionPool\Selectors\RandomSelector')
+            ->setSelector('\Digistorm\ConnectionPool\Selectors\RandomSelector')
             ->build();
 ----
 
@@ -75,8 +75,8 @@ You can implement your own custom selector.  Custom selectors must implement `Se
 ----
 namespace MyProject\Selectors;
 
-use Elasticsearch\Connections\ConnectionInterface;
-use Elasticsearch\ConnectionPool\Selectors\SelectorInterface
+use Digistorm\Connections\ConnectionInterface;
+use Digistorm\ConnectionPool\Selectors\SelectorInterface
 
 class MyCustomSelector implements SelectorInterface
 {

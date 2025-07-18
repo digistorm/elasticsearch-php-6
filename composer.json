@@ -37,14 +37,14 @@
       "src/autoload.php"
     ],
     "psr-4": {
-      "Elasticsearch\\": "src/Elasticsearch/"
+      "Digistorm\\": "src/Elasticsearch/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Elasticsearch\\Tests\\": "tests/Elasticsearch/Tests/",
-      "Elasticsearch\\IntegrationTests\\": "tests/Elasticsearch/IntegrationTests/",
-      "Elasticsearch\\Util\\": "util/"
+      "Digistorm\\Tests\\": "tests/Elasticsearch/Tests/",
+      "Digistorm\\IntegrationTests\\": "tests/Elasticsearch/IntegrationTests/",
+      "Digistorm\\Util\\": "util/"
     }
   },
   "config": {

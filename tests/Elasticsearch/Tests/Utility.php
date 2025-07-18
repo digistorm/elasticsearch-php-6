@@ -16,12 +16,12 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Tests;
+namespace Digistorm\Tests;
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
-use Elasticsearch\Common\Exceptions\ElasticsearchException;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
+use Digistorm\Client;
+use Digistorm\ClientBuilder;
+use Digistorm\Common\Exceptions\ElasticsearchException;
+use Digistorm\Common\Exceptions\Missing404Exception;
 
 class Utility
 {
@@ -92,7 +92,7 @@ class Utility
 
     /**
      * Clean up the cluster after a test
-     * 
+     *
      * @see ESRestTestCase.java:cleanUpCluster()
      */
     public static function cleanUpCluster(Client $client): void
@@ -103,14 +103,14 @@ class Utility
 
      /**
      * Delete the cluster
-     * 
+     *
      * @see ESRestTestCase.java:wipeCluster()
      */
     private static function wipeCluster(Client $client): void
     {
         if (getenv('TEST_SUITE') === 'xpack') {
             self::wipeRollupJobs($client);
-            self::waitForPendingRollupTasks($client); 
+            self::waitForPendingRollupTasks($client);
         }
 
         self::wipeSnapshots($client);
@@ -136,7 +136,7 @@ class Utility
 
     /**
      * Delete all the Roolup Jobs for XPack test suite
-     * 
+     *
      * @see ESRestTestCase.java:wipeRollupJobs()
      */
     private static function wipeRollupJobs(Client $client): void
@@ -166,8 +166,8 @@ class Utility
     }
 
     /**
-     * Delete all the Snapshots 
-     * 
+     * Delete all the Snapshots
+     *
      * @see ESRestTestCase.java:wipeSnapshots()
      */
     private static function wipeSnapshots(Client $client): void
@@ -182,7 +182,7 @@ class Utility
                         'ignore' => 404
                     ]
                 ]);
-            }         
+            }
             $client->snapshot()->deleteRepository([
                 'repository' => $name,
                 'client' => [
@@ -194,7 +194,7 @@ class Utility
 
     /**
      * Wait for pending rollup tasks containing "xpack/rollup/job"
-     * 
+     *
      * @see ESRestTestCase.java:waitForPendingRollupTasks()
      */
     private static function waitForPendingRollupTasks(Client $client): void
@@ -204,7 +204,7 @@ class Utility
 
     /**
      * Wait for pending tasks
-     * 
+     *
      * @see ESRestTestCase.java:waitForPendingTasks()
      */
     private static function waitForPendingTasks(Client $client, string $filter, int $timeout = 30): void
@@ -229,7 +229,7 @@ class Utility
 
     /**
      * Delete all indices
-     * 
+     *
      * @see ESRestTestCase.java:wipeAllIndices()
      */
     private static function wipeAllIndices(Client $client): void
@@ -248,7 +248,7 @@ class Utility
      * recreate. Deleting them doesn't hurt anything, but it
      * slows down the test because xpack will just recreate
      * them.
-     * 
+     *
      * @see ESRestTestCase.java:wipeCluster()
      */
     private static function wipeTemplateForXpack(Client $client): void
@@ -272,7 +272,7 @@ class Utility
 
     /**
      * Reset the cluster settings
-     * 
+     *
      * @see ESRestTestCase.java:wipeClusterSettings()
      */
     private static function wipeClusterSettings(Client $client): void
@@ -298,7 +298,7 @@ class Utility
 
     /**
      * Check if a template name is part of XPack
-     * 
+     *
      * @see ESRestTestCase.java:isXPackTemplate()
      */
     private static function isXPackTemplate(string $name): bool
@@ -345,24 +345,24 @@ class Utility
 
     /**
      * A set of ILM policies that should be preserved between runs.
-     * 
+     *
      * @see ESRestTestCase.java:preserveILMPolicyIds
      */
     private static function preserveILMPolicyIds(): array
     {
         return [
-            "ilm-history-ilm-policy", 
+            "ilm-history-ilm-policy",
             "slm-history-ilm-policy",
-            "watch-history-ilm-policy", 
-            "ml-size-based-ilm-policy", 
-            "logs", 
+            "watch-history-ilm-policy",
+            "ml-size-based-ilm-policy",
+            "logs",
             "metrics"
         ];
     }
 
     /**
      * Delete all ILM policies
-     * 
+     *
      * @see ESRestTestCase.java:deleteAllILMPolicies()
      */
     private static function deleteAllILMPolicies(Client $client): void
@@ -379,7 +379,7 @@ class Utility
 
     /**
      * Delete all CCR Auto Follow Patterns
-     * 
+     *
      * @see ESRestTestCase.java:deleteAllAutoFollowPatterns()
      */
     private static function deleteAllAutoFollowPatterns(Client $client): void
@@ -411,7 +411,7 @@ class Utility
 
     /**
      * Wait for Cluster state updates to finish
-     * 
+     *
      * @see ESRestTestCase.java:waitForClusterStateUpdatesToFinish()
      */
     private static function waitForClusterStateUpdatesToFinish(Client $client, int $timeout = 30): void

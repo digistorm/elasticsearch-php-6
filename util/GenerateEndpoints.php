@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,11 +15,11 @@
 declare(strict_types = 1);
 
 use Symplify\GitWrapper\GitWrapper;
-use Elasticsearch\Client;
-use Elasticsearch\Util\ClientEndpoint;
-use Elasticsearch\Util\Endpoint;
-use Elasticsearch\Util\NamespaceEndpoint;
-use Elasticsearch\Tests\Utility;
+use Digistorm\Client;
+use Digistorm\Util\ClientEndpoint;
+use Digistorm\Util\Endpoint;
+use Digistorm\Util\NamespaceEndpoint;
+use Digistorm\Tests\Utility;
 
 /**
  * Endpoints and namespaces generator for elasticsearch-php 6.x
@@ -29,7 +29,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 $client = Utility::getClient();
 $serverInfo = $client->info();
 $version = $serverInfo['version']['number'];
-$buildHash = $serverInfo['version']['build_hash']; 
+$buildHash = $serverInfo['version']['build_hash'];
 
 if (version_compare($version, '7.4.0', '>=')) {
     printf("Error: the ES version must be < 7.4.0\n");
@@ -37,7 +37,7 @@ if (version_compare($version, '7.4.0', '>=')) {
 }
 
 $backupFileName = sprintf(
-    "%s/backup_endpoint_namespace_%s.zip", 
+    "%s/backup_endpoint_namespace_%s.zip",
     __DIR__,
     Client::VERSION
 );
@@ -46,7 +46,7 @@ printf ("Backup Endpoints and Namespaces in:\n%s\n", $backupFileName);
 backup($backupFileName);
 
 $start = microtime(true);
-printf ("Generating endpoints for Elasticsearch\n");
+printf ("Generating endpoints for Digistorm\n");
 
 $success = true;
 $gitWrapper = new GitWrapper();
@@ -170,7 +170,7 @@ function removeDirectory($directory, array $omit = [])
 {
     foreach(glob("{$directory}/*") as $file)
     {
-        if(is_dir($file)) { 
+        if(is_dir($file)) {
             if (!in_array($file, $omit)) {
                 removeDirectory($file, $omit);
             }
@@ -224,17 +224,17 @@ function backup(string $fileName)
         exit(1);
     } else {
         $zip->addFile(__DIR__ . '/../src/Elasticsearch/Client.php', 'Client.php');
-        $zip->addGlob(__DIR__ . '/../src/Elasticsearch/Namespaces/*.php', GLOB_BRACE, [ 
+        $zip->addGlob(__DIR__ . '/../src/Elasticsearch/Namespaces/*.php', GLOB_BRACE, [
             'remove_path' => __DIR__ . '/../src/Elasticsearch'
         ]);
         // Add the Endpoints (including subfolders)
         foreach(glob(__DIR__ . '/../src/Elasticsearch/Endpoints/*') as $file) {
             if (is_dir($file)) {
-                $zip->addGlob("$file/*.php", GLOB_BRACE, [ 
+                $zip->addGlob("$file/*.php", GLOB_BRACE, [
                     'remove_path' => __DIR__ . '/../src/Elasticsearch'
                 ]);
             } else {
-                $zip->addGlob("$file", GLOB_BRACE, [ 
+                $zip->addGlob("$file", GLOB_BRACE, [
                     'remove_path' => __DIR__ . '/../src/Elasticsearch'
                 ]);
             }

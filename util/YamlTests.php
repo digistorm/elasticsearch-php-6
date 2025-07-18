@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,9 +15,9 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Util;
+namespace Digistorm\Util;
 
-use Elasticsearch\Util\ActionTest;
+use Digistorm\Util\ActionTest;
 use Exception;
 use ParseError;
 use RecursiveDirectoryIterator;
@@ -79,7 +79,7 @@ class YamlTests
         'protected', 'public', 'require', 'require_once', 'return', 'static',
         'switch', 'throw', 'trait', 'try', 'unset', 'use', 'var', 'while', 'xor'
     ];
-    
+
     private $tests = [];
     private $testOutput;
     private $testDir;
@@ -169,27 +169,27 @@ class YamlTests
                         default:
                             $functionName = $this->filterFunctionName(ucwords($name), $alreadyAssignedNames);
                             $alreadyAssignedNames[] = $functionName;
-                            
+
                             $skippedTest = sprintf("%s\\%s::%s", $namespace, $testName, $functionName);
                             $skippedAllTest = sprintf("%s\\%s::*", $namespace, $testName);
-                            $skip = strtolower(self::$testSuite) === 'oss' 
-                                ? self::SKIPPED_TEST_OSS 
+                            $skip = strtolower(self::$testSuite) === 'oss'
+                                ? self::SKIPPED_TEST_OSS
                                 : self::SKIPPED_TEST_XPACK;
                             if (isset($skip[$skippedAllTest])) {
                                 $allSkipped = true;
                                 $functions .= self::render(
                                     self::TEMPLATE_FUNCTION_SKIPPED,
-                                    [ 
+                                    [
                                         ':name' => $functionName,
-                                        ':skipped_msg'  => $skip[$skippedAllTest] 
+                                        ':skipped_msg'  => $skip[$skippedAllTest]
                                     ]
                                 );
                             } elseif (isset($skip[$skippedTest])) {
                                 $functions .= self::render(
                                     self::TEMPLATE_FUNCTION_SKIPPED,
-                                    [ 
+                                    [
                                         ':name' => $functionName,
-                                        ':skipped_msg'  => $skip[$skippedTest] 
+                                        ':skipped_msg'  => $skip[$skippedTest]
                                     ]
                                 );
                             } else {
@@ -209,7 +209,7 @@ class YamlTests
                 $test = self::render(
                     self::TEMPLATE_UNIT_TEST_SKIPPED,
                     [
-                        ':namespace' => sprintf("Elasticsearch\Tests\Yaml\%s\%s", self::$testSuite, $namespace),
+                        ':namespace' => sprintf("Digistorm\Tests\Yaml\%s\%s", self::$testSuite, $namespace),
                         ':test-name' => $testName,
                         ':tests'     => $functions,
                         ':yamlfile'  => sprintf(self::ELASTICSEARCH_GIT_URL, self::$minorEsVersion, $yamlFileName),
@@ -222,7 +222,7 @@ class YamlTests
                         ? self::TEMPLATE_UNIT_TEST_OSS
                         : self::TEMPLATE_UNIT_TEST_XPACK,
                     [
-                        ':namespace' => sprintf("Elasticsearch\Tests\Yaml\%s\%s", self::$testSuite, $namespace),
+                        ':namespace' => sprintf("Digistorm\Tests\Yaml\%s\%s", self::$testSuite, $namespace),
                         ':test-name' => $testName,
                         ':tests'     => $functions,
                         ':setup'     => $setup,
@@ -308,7 +308,7 @@ class YamlTests
     {
         foreach(glob("{$directory}/*") as $file)
         {
-            if(is_dir($file)) { 
+            if(is_dir($file)) {
                 $this->removeDirectory($file);
             } else {
                 unlink($file);

@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -16,10 +16,10 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Tests\ConnectionPool\Selectors;
+namespace Digistorm\Tests\ConnectionPool\Selectors;
 
-use Elasticsearch;
-use Elasticsearch\Connections\ConnectionInterface;
+use Digistorm;
+use Digistorm\Connections\ConnectionInterface;
 
 /**
  * Class SnifferTest
@@ -31,13 +31,13 @@ class RoundRobinSelectorTest extends \PHPUnit\Framework\TestCase
     /**
      * Add Ten connections, select 15 to verify round robin
      *
-     * @covers \Elasticsearch\ConnectionPool\Selectors\RoundRobinSelector::select
+     * @covers \Digistorm\ConnectionPool\Selectors\RoundRobinSelector::select
      *
      * @return void
      */
     public function testTenConnections()
     {
-        $roundRobin = new Elasticsearch\ConnectionPool\Selectors\RoundRobinSelector();
+        $roundRobin = new Digistorm\ConnectionPool\Selectors\RoundRobinSelector();
 
         $mockConnections = [];
         foreach (range(0, 9) as $index) {
@@ -70,13 +70,13 @@ class RoundRobinSelectorTest extends \PHPUnit\Framework\TestCase
      * Add Ten connections, select five, remove three, test another 10 to check
      * that the round-robining works after removing connections
      *
-     * @covers \Elasticsearch\ConnectionPool\Selectors\RoundRobinSelector::select
+     * @covers \Digistorm\ConnectionPool\Selectors\RoundRobinSelector::select
      *
      * @return void
      */
     public function testAddTenConnectionsTestFiveRemoveThreeTestTen()
     {
-        $roundRobin = new Elasticsearch\ConnectionPool\Selectors\RoundRobinSelector();
+        $roundRobin = new Digistorm\ConnectionPool\Selectors\RoundRobinSelector();
 
         $mockConnections = [];
         foreach (range(0, 9) as $index) {

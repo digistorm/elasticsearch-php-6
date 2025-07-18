@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -14,9 +14,9 @@
  */
 declare(strict_types = 1);
 
-use Elasticsearch\Common\Exceptions\ElasticsearchException;
-use Elasticsearch\Util\YamlTests;
-use Elasticsearch\Tests\Utility;
+use Digistorm\Common\Exceptions\ElasticsearchException;
+use Digistorm\Util\YamlTests;
+use Digistorm\Tests\Utility;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -51,7 +51,7 @@ if (!in_array($argv[2], ['oss', 'xpack'])) {
 printf ("*****************************************\n");
 printf ("** Bulding YAML tests for %s suite\n", strtoupper($stack));
 printf ("*****************************************\n");
-printf ("Using %s version for Elasticsearch\n", $version);
+printf ("Using %s version for Digistorm\n", $version);
 
 $yamlOutputTest = __DIR__ . '/../tests/Elasticsearch/Tests/Yaml';
 $yamlTestFolder = strtolower($stack) === 'oss'

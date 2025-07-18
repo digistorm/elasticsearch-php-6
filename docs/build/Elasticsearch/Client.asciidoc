@@ -1,7 +1,7 @@
 
 
 [[Elasticsearch_Client]]
-=== Elasticsearch\Client
+=== Digistorm\Client
 
 
 

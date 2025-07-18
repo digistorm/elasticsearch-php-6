@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -14,9 +14,9 @@
  */
 declare(strict_types = 1);
 
-namespace Elasticsearch\Namespaces;
+namespace Digistorm\Namespaces;
 
-use Elasticsearch\Namespaces\AbstractNamespace;
+use Digistorm\Namespaces\AbstractNamespace;
 
 /**
  * Class RollupNamespace
@@ -32,7 +32,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function deleteJob(array $params = [])
     {
@@ -50,7 +50,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function getJobs(array $params = [])
     {
@@ -68,7 +68,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function getRollupCaps(array $params = [])
     {
@@ -86,7 +86,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function getRollupIndexCaps(array $params = [])
     {
@@ -105,7 +105,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function putJob(array $params = [])
     {
@@ -128,7 +128,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function rollupSearch(array $params = [])
     {
@@ -150,7 +150,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function startJob(array $params = [])
     {
@@ -170,7 +170,7 @@ class RollupNamespace extends AbstractNamespace
      *
      * @param array $params Associative array of parameters
      * @return array
-     * @see 
+     * @see
      */
     public function stopJob(array $params = [])
     {

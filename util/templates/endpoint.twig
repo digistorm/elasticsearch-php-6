@@ -1,15 +1,15 @@
 <?php
 
-namespace Elasticsearch\Endpoints{% for class in namespace %}{{ loop.last ? ';' : '\\' ~ class|title  }}{%  endfor %}
+namespace Digistorm\Endpoints{% for class in namespace %}{{ loop.last ? ';' : '\\' ~ class|title  }}{%  endfor %}
 
-use Elasticsearch\Endpoints\AbstractEndpoint;
-use Elasticsearch\Common\Exceptions;
+use Digistorm\Endpoints\AbstractEndpoint;
+use Digistorm\Common\Exceptions;
 
 /**
  * Class {{ className|title|replace({'.': ""}) }}
  *
  * @category Elasticsearch
- * @package Elasticsearch\Endpoints{% for class in namespace %}{{ loop.last ? '' : '\\' ~ class|title  }}{%  endfor %}
+ * @package Digistorm\Endpoints{% for class in namespace %}{{ loop.last ? '' : '\\' ~ class|title  }}{%  endfor %}
 
  *
  * @author   Zachary Tong <zach@elastic.co>
@@ -29,7 +29,7 @@ class {{ className|title }} extends AbstractEndpoint
     /**
      * @param array $body
      *
-     * @throws \Elasticsearch\Common\Exceptions\InvalidArgumentException
+     * @throws \Digistorm\Common\Exceptions\InvalidArgumentException
      * @return $this
      */
     public function setBody($body)
@@ -70,7 +70,7 @@ class {{ className|title }} extends AbstractEndpoint
 {% endfor %}
 {% set exception = '' %}
     /**
-{% for part, info in data.url.parts %}{% if info.required is not null %}{% set exception = ' * @throws \\Elasticsearch\\Common\\Exceptions\\BadMethodCallException
+{% for part, info in data.url.parts %}{% if info.required is not null %}{% set exception = ' * @throws \\Digistorm\\Common\\Exceptions\\BadMethodCallException
     ' %}{% endif %}{% endfor %}
     {% autoescape false %}{{ exception }}{% endautoescape %}
  * @return string
@@ -123,7 +123,7 @@ class {{ className|title }} extends AbstractEndpoint
 {% if data.body.required == true %}
     /**
      * @return array
-     * @throws \Elasticsearch\Common\Exceptions\RuntimeException
+     * @throws \Digistorm\Common\Exceptions\RuntimeException
      */
     protected function getBody()
     {

@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,7 +15,7 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Util;
+namespace Digistorm\Util;
 
 use Exception;
 use JsonException;
@@ -71,9 +71,9 @@ class Endpoint
      * @param $buildhash Elasticsearch build hash of the API specification
      */
     public function __construct(
-        string $fileName, 
-        string $content, 
-        string $version, 
+        string $fileName,
+        string $content,
+        string $version,
         string $buildhash
     ) {
         $this->apiName = basename($fileName, '.json');
@@ -222,7 +222,7 @@ class Endpoint
         $tab12 = str_repeat(' ', 12);
         $tab8 = str_repeat(' ', 8);
         $result = '';
-        foreach (array_keys($this->content['url']['params']) as $param) {    
+        foreach (array_keys($this->content['url']['params']) as $param) {
             $result .=  "'$param',\n" . $tab12;
         }
         return "\n". $tab12 . rtrim(trim($result), ',') . "\n". $tab8;
@@ -245,7 +245,7 @@ class Endpoint
                         ucfirst($this->name),
                         str_replace(':part', $part, $skeleton)
                     );
-                    $this->addNamespace('Elasticsearch\Common\Exceptions\RuntimeException');
+                    $this->addNamespace('Digistorm\Common\Exceptions\RuntimeException');
                 } else {
                     $params .= sprintf("%s\$%s = \$this->%s ?? null;\n", $tab8, $part, $part);
                 }
@@ -294,11 +294,11 @@ class Endpoint
                 $tab8,
                 $this->apiName
             );
-            $this->addNamespace('Elasticsearch\Common\Exceptions\RuntimeException');
+            $this->addNamespace('Digistorm\Common\Exceptions\RuntimeException');
         }
         /**
-         * Custom check for Elasticsearch\Endpoints\Snapshot\Status::getURI()
-         * 
+         * Custom check for Digistorm\Endpoints\Snapshot\Status::getURI()
+         *
          * @see https://github.com/elastic/elasticsearch-php/blob/v6.7.2/src/Elasticsearch/Endpoints/Snapshot/Status.php#L73-L77
          */
         if ($this->name === 'status' && $this->namespace === 'snapshot') {
@@ -306,7 +306,7 @@ class Endpoint
         }
         return $checkPart . $params . $urls . $else;
     }
-    
+
     private function extractPaths(array $paths): array
     {
         $urls = $paths;
@@ -357,7 +357,7 @@ class Endpoint
     private function getSetBulkBody(): string
     {
         $setPart = file_get_contents(self::SET_BULK_BODY_TEMPLATE);
-        $this->addNamespace('Elasticsearch\Common\Exceptions\InvalidArgumentException');
+        $this->addNamespace('Digistorm\Common\Exceptions\InvalidArgumentException');
 
         return str_replace(':endpoint', $this->getClassName(), $setPart);
     }

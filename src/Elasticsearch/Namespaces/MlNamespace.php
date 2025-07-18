@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -14,9 +14,9 @@
  */
 declare(strict_types = 1);
 
-namespace Elasticsearch\Namespaces;
+namespace Digistorm\Namespaces;
 
-use Elasticsearch\Namespaces\AbstractNamespace;
+use Digistorm\Namespaces\AbstractNamespace;
 
 /**
  * Class MlNamespace
@@ -582,7 +582,7 @@ class MlNamespace extends AbstractNamespace
      * $params['size']            = (int) specifies a max number of records to get
      * $params['start']           = (string) Start time filter for records
      * $params['end']             = (string) End time filter for records
-     * $params['record_score']    = (double) 
+     * $params['record_score']    = (double)
      * $params['sort']            = (string) Sort records by a particular field
      * $params['desc']            = (boolean) Set the sort direction
      * $params['body']            = (array) Record selection criteria

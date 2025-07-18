@@ -119,16 +119,16 @@ you can catch a specific curl exception then check if it wraps a MaxRetriesExcep
 
 [source,php]
 ----
-$client = Elasticsearch\ClientBuilder::create()
+$client = Digistorm\ClientBuilder::create()
     ->setHosts(["localhost:1"])
     ->setRetries(0)
     ->build();
 
 try {
     $client->search($searchParams);
-} catch (Elasticsearch\Common\Exceptions\Curl\CouldNotConnectToHost $e) {
+} catch (Digistorm\Common\Exceptions\Curl\CouldNotConnectToHost $e) {
     $previous = $e->getPrevious();
-    if ($previous instanceof 'Elasticsearch\Common\Exceptions\MaxRetriesException') {
+    if ($previous instanceof 'Digistorm\Common\Exceptions\MaxRetriesException') {
         echo "Max retries!";
     }
 }
@@ -140,16 +140,16 @@ check it's previous value:
 
 [source,php]
 ----
-$client = Elasticsearch\ClientBuilder::create()
+$client = Digistorm\ClientBuilder::create()
     ->setHosts(["localhost:1"])
     ->setRetries(0)
     ->build();
 
 try {
     $client->search($searchParams);
-} catch (Elasticsearch\Common\Exceptions\TransportException $e) {
+} catch (Digistorm\Common\Exceptions\TransportException $e) {
     $previous = $e->getPrevious();
-    if ($previous instanceof 'Elasticsearch\Common\Exceptions\MaxRetriesException') {
+    if ($previous instanceof 'Digistorm\Common\Exceptions\MaxRetriesException') {
         echo "Max retries!";
     }
 }
@@ -238,13 +238,13 @@ Connection pools are configured via the `setConnectionPool()` method:
 
 [source,php]
 ----
-$connectionPool = '\Elasticsearch\ConnectionPool\StaticNoPingConnectionPool';
+$connectionPool = '\Digistorm\ConnectionPool\StaticNoPingConnectionPool';
 $client = ClientBuilder::create()
             ->setConnectionPool($connectionPool)
             ->build();
 ----
 
-For more details, please see the dedicated page on 
+For more details, please see the dedicated page on
 <<connection_pool,configuring connection pools>>.
 
 === Setting the Connection Selector
@@ -255,7 +255,7 @@ via the `setSelector()` method:
 
 [source,php]
 ----
-$selector = '\Elasticsearch\ConnectionPool\Selectors\StickyRoundRobinSelector';
+$selector = '\Digistorm\ConnectionPool\Selectors\StickyRoundRobinSelector';
 $client = ClientBuilder::create()
             ->setSelector($selector)
             ->build();
@@ -276,7 +276,7 @@ it can be done via the `setSerializer()` method:
 
 [source,php]
 ----
-$serializer = '\Elasticsearch\Serializers\SmartSerializer';
+$serializer = '\Digistorm\Serializers\SmartSerializer';
 $client = ClientBuilder::create()
             ->setSerializer($serializer)
             ->build();
@@ -359,7 +359,7 @@ $newEndpoint = function ($class) use ($transport, $serializer) {
         return new MyProject\SuperSearch($transport);
     } else {
         // Default handler
-        $fullPath = '\\Elasticsearch\\Endpoints\\' . $class;
+        $fullPath = '\\Digistorm\\Endpoints\\' . $class;
         if ($class === 'Bulk' || $class === 'Msearch' || $class === 'MPercolate') {
             return new $fullPath($transport, $serializer);
         } else {

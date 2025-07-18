@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,7 +15,7 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Util;
+namespace Digistorm\Util;
 
 use Exception;
 
@@ -47,8 +47,8 @@ class NamespaceEndpoint
         if (empty($this->endpoints)) {
             throw new Exception("No endpoints has been added. I cannot render the class");
         }
-        $class = file_get_contents($this->name === 'indices' 
-            ? static::NAMESPACE_INDICES_CLASS_TEMPLATE 
+        $class = file_get_contents($this->name === 'indices'
+            ? static::NAMESPACE_INDICES_CLASS_TEMPLATE
             : static::NAMESPACE_CLASS_TEMPLATE
         );
         $class = str_replace(':namespace', $this->getNamespaceName() . 'Namespace', $class);
@@ -88,7 +88,7 @@ class NamespaceEndpoint
 
         /**
          * Special case for delete() endpoint to use Client::verifyNotNullOrEmpty
-         * 
+         *
          * @see https://github.com/elastic/elasticsearch-php/blob/v6.7.2/src/Elasticsearch/Client.php#L290-L292
          */
         if ($endpoint->name === 'delete' && $endpoint->namespace === '') {

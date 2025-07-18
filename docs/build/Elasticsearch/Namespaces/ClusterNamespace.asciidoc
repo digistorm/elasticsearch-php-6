@@ -1,7 +1,7 @@
 
 
 [[Elasticsearch_Namespaces_ClusterNamespace]]
-=== Elasticsearch\Namespaces\ClusterNamespace
+=== Digistorm\Namespaces\ClusterNamespace
 
 
 

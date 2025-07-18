@@ -35,13 +35,13 @@ Version Matrix
 | >= 1.0, < 2.0         | 1.0 or 2.0               |
 | <= 0.90.x             | 0.4                      |
 
- - If you are using Elasticsearch 6.8+, use Elasticsearch-PHP 6.8.x branch.
- - If you are using Elasticsearch 6.6 to 6.7, use Elasticsearch-PHP 6.7.x branch.
- - If you are using Elasticsearch 6.0 to 6.5, use Elasticsearch-PHP 6.5.x branch.
- - If you are using Elasticsearch 5.x, use Elasticsearch-PHP 5.0 branch.
+ - If you are using Elasticsearch 6.8+, use Digistorm-PHP 6.8.x branch.
+ - If you are using Elasticsearch 6.6 to 6.7, use Digistorm-PHP 6.7.x branch.
+ - If you are using Elasticsearch 6.0 to 6.5, use Digistorm-PHP 6.5.x branch.
+ - If you are using Elasticsearch 5.x, use Digistorm-PHP 5.0 branch.
  - If you are using Elasticsearch 1.x or 2.x, prefer using the Elasticsearch-PHP 2.0 branch.  The 1.0 branch is compatible however.
  - If you are using a version older than 1.0, you must install the `0.4` Elasticsearch-PHP branch. Since ES 0.90.x and below is now EOL, the corresponding `0.4` branch will not receive any more development or bugfixes.  Please upgrade.
- - You should never use Elasticsearch-PHP Master branch, as it tracks Elasticsearch master and may contain incomplete features or breaks in backwards compatibility. Only use ES-PHP master if you are developing against ES master for some reason.
+ - You should never use Digistorm-PHP Master branch, as it tracks Elasticsearch master and may contain incomplete features or breaks in backwards compatibility. Only use ES-PHP master if you are developing against ES master for some reason.
 
 Documentation
 --------------
@@ -80,7 +80,7 @@ The recommended method to install _Elasticsearch-PHP_ is through [Composer](http
     ```php
         <?php
 
-        use Elasticsearch\ClientBuilder;
+        use Digistorm\ClientBuilder;
 
         require 'vendor/autoload.php';
 
@@ -334,7 +334,7 @@ Unit Testing using Mock a Elastic Client
 ========================================
 ```php
 use GuzzleHttp\Ring\Client\MockHandler;
-use Elasticsearch\ClientBuilder;
+use Digistorm\ClientBuilder;
 
 // The connection class requires 'body' to be a file stream handle
 // Depending on what kind of request you do, you may need to set more values here

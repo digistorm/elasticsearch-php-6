@@ -36,7 +36,7 @@ method of the ClientBuilder object:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setConnectionPool('\Elasticsearch\ConnectionPool\StaticNoPingConnectionPool', [])
+            ->setConnectionPool('\Digistorm\ConnectionPool\StaticNoPingConnectionPool', [])
             ->build();
 ----
 
@@ -52,7 +52,7 @@ To use the `StaticConnectionPool`:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setConnectionPool('\Elasticsearch\ConnectionPool\StaticConnectionPool', [])
+            ->setConnectionPool('\Digistorm\ConnectionPool\StaticConnectionPool', [])
             ->build();
 ----
 
@@ -71,7 +71,7 @@ To use the `SimpleConnectionPool`:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setConnectionPool('\Elasticsearch\ConnectionPool\SimpleConnectionPool', [])
+            ->setConnectionPool('\Digistorm\ConnectionPool\SimpleConnectionPool', [])
             ->build();
 ----
 
@@ -88,7 +88,7 @@ To use the `SniffingConnectionPool`:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setConnectionPool('\Elasticsearch\ConnectionPool\SniffingConnectionPool', [])
+            ->setConnectionPool('\Digistorm\ConnectionPool\SniffingConnectionPool', [])
             ->build();
 ----
 

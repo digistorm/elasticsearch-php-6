@@ -5,8 +5,8 @@
  * @link      https://github.com/elastic/elasticsearch-php/
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
- * 
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
  * Licensed to Elasticsearch B.V under one or more agreements.
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
  * the GNU Lesser General Public License, Version 2.1, at your option.
@@ -15,16 +15,16 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Util;
+namespace Digistorm\Util;
 
-use Elasticsearch\Common\Exceptions\BadRequest400Exception;
-use Elasticsearch\Common\Exceptions\Conflict409Exception;
-use Elasticsearch\Common\Exceptions\ElasticsearchException;
-use Elasticsearch\Common\Exceptions\Forbidden403Exception;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Elasticsearch\Common\Exceptions\RequestTimeout408Exception;
-use Elasticsearch\Common\Exceptions\Unauthorized401Exception;
-use Elasticsearch\Util\YamlTests;
+use Digistorm\Common\Exceptions\BadRequest400Exception;
+use Digistorm\Common\Exceptions\Conflict409Exception;
+use Digistorm\Common\Exceptions\ElasticsearchException;
+use Digistorm\Common\Exceptions\Forbidden403Exception;
+use Digistorm\Common\Exceptions\Missing404Exception;
+use Digistorm\Common\Exceptions\RequestTimeout408Exception;
+use Digistorm\Common\Exceptions\Unauthorized401Exception;
+use Digistorm\Util\YamlTests;
 use PHPUnit\Runner\Version as PHPUnitVersion;
 use stdClass;
 
@@ -60,12 +60,12 @@ class ActionTest
 
     const TAB14                 = '              ';
     const SUPPORTED_FEATURES    = [
-        'xpack', 
-        'no_xpack', 
-        'headers', 
-        'node_selector', 
-        'warnings', 
-        'catch_unauthorized', 
+        'xpack',
+        'no_xpack',
+        'headers',
+        'node_selector',
+        'warnings',
+        'catch_unauthorized',
         'transform_and_set',
         'allowed_warnings'
     ];
@@ -79,7 +79,7 @@ class ActionTest
     public function __construct(array $steps)
     {
         $this->phpUnitVersion = (int) explode('.', PHPUnitVersion::id())[0];
-        
+
         foreach ($steps as $step) {
             foreach ($step as $name => $actions) {
                 if (method_exists($this, $name) && !$this->skippedTest) {
@@ -178,8 +178,8 @@ class ActionTest
             case 'bad_request':
                 $expectedException = BadRequest400Exception::class;
                 break;
-            case 'unauthorized':  
-                $expectedException = Unauthorized401Exception::class;  
+            case 'unauthorized':
+                $expectedException = Unauthorized401Exception::class;
                 break;
             case 'forbidden':
                 $expectedException = Forbidden403Exception::class;
@@ -257,7 +257,7 @@ class ActionTest
             // Add /sx preg modifier to ignore whitespace
             $vars[':expected'] .= "sx";
             return YamlTests::render(
-                ($this->phpUnitVersion > 8) ? (self::TEMPLATE_PHPUNIT9_MATCH_REGEX) : (self::TEMPLATE_MATCH_REGEX), 
+                ($this->phpUnitVersion > 8) ? (self::TEMPLATE_PHPUNIT9_MATCH_REGEX) : (self::TEMPLATE_MATCH_REGEX),
                 $vars
             );
         }
@@ -267,7 +267,7 @@ class ActionTest
         return YamlTests::render(self::TEMPLATE_MATCH_EQUAL, $vars);
     }
 
-    private function is_true(string $value) 
+    private function is_true(string $value)
     {
         $vars = [
             ':value' => $this->convertResponseField($value)
@@ -275,7 +275,7 @@ class ActionTest
         return YamlTests::render(self::TEMPLATE_IS_TRUE, $vars);
     }
 
-    private function is_false(string $value) 
+    private function is_false(string $value)
     {
         $vars = [
             ':value' => $this->convertResponseField($value)
@@ -286,7 +286,7 @@ class ActionTest
     private function length(array $actions)
     {
         $key = key($actions);
-       
+
         return YamlTests::render(self::TEMPLATE_LENGTH, [
             ':expected' => (int) $actions[$key],
             ':value'    => $this->convertResponseField($key)
@@ -305,7 +305,7 @@ class ActionTest
             if (empty($version[1])) {
                 $version[1] = sprintf("%s", PHP_INT_MAX);
             }
-            if (strtolower($version[0]) === 'all' || 
+            if (strtolower($version[0]) === 'all' ||
                (version_compare(YamlTests::$esVersion, $version[0], '>=') && version_compare(YamlTests::$esVersion, $version[1], '<='))
             ) {
                 $this->skippedTest = true;
@@ -327,21 +327,21 @@ class ActionTest
                     ]);
                 }
                 switch ($feature) {
-                    case 'xpack': 
+                    case 'xpack':
                         if (YamlTests::$testSuite !== 'xpack') {
                             $this->skippedTest = true;
                             return YamlTests::render(self::TEMPLATE_SKIP_XPACK, [
                                 ':testname' => "__CLASS__ . '::' . __FUNCTION__"
                             ]);
-                        } 
+                        }
                         break;
-                    case 'no_xpack': 
+                    case 'no_xpack':
                         if (YamlTests::$testSuite !== 'oss') {
                             $this->skippedTest = true;
                             return YamlTests::render(self::TEMPLATE_SKIP_OSS, [
                                 ':testname' => "__CLASS__ . '::' . __FUNCTION__"
                             ]);
-                        } 
+                        }
                         break;
                 }
             }
@@ -428,7 +428,7 @@ class ActionTest
         }
         return str_replace('_', '', $result);
     }
-    
+
     private function convertResponseField(string $field): string
     {
         $output = '$response';
@@ -453,11 +453,11 @@ class ActionTest
         }
         return $output;
     }
-    
+
     private function convertDollarValueInVariable(string $value): string
     {
         foreach ($this->variables as $var) {
-            
+
             $value = str_replace("\${{$var}}", "\$$var", $value);
             $value = str_replace("'\$$var'", "\$$var", $value);
             if (preg_match("/'[^']*\\\${$var}[^']*',/", $value)) {
@@ -481,7 +481,7 @@ class ActionTest
             $matches[2][0] = str_replace('/', '\/', $matches[2][0]);
             return sprintf("%s%s%s", $matches[1][0], $matches[2][0], $matches[3][0]);
         }
-        
+
         return $regex;
     }
 

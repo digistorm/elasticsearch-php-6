@@ -40,7 +40,7 @@ do so by using the `setSerializer()` method on the ClientBuilder object:
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSerializer('\Elasticsearch\Serializers\SmartSerializer');
+            ->setSerializer('\Digistorm\Serializers\SmartSerializer');
             ->build();
 ----
 
@@ -69,7 +69,7 @@ You can select  `ArrayToJSONSerializer` by using the `setSerializer()` method on
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSerializer('\Elasticsearch\Serializers\ArrayToJSONSerializer');
+            ->setSerializer('\Digistorm\Serializers\ArrayToJSONSerializer');
             ->build();
 ----
 
@@ -97,7 +97,7 @@ You can select  `EverythingToJSONSerializer` by using the `setSerializer()` meth
 [source,php]
 ----
 $client = ClientBuilder::create()
-            ->setSerializer('\Elasticsearch\Serializers\EverythingToJSONSerializer');
+            ->setSerializer('\Digistorm\Serializers\EverythingToJSONSerializer');
             ->build();
 ----
 

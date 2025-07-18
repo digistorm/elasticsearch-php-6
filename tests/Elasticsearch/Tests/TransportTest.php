@@ -16,13 +16,13 @@
 
 declare(strict_types = 1);
 
-namespace Elasticsearch\Tests;
+namespace Digistorm\Tests;
 
-use Elasticsearch\Common\Exceptions\ServerErrorResponseException;
-use Elasticsearch\ConnectionPool\AbstractConnectionPool;
-use Elasticsearch\Connections\Connection;
-use Elasticsearch\Serializers\SerializerInterface;
-use Elasticsearch\Transport;
+use Digistorm\Common\Exceptions\ServerErrorResponseException;
+use Digistorm\ConnectionPool\AbstractConnectionPool;
+use Digistorm\Connections\Connection;
+use Digistorm\Serializers\SerializerInterface;
+use Digistorm\Transport;
 use GuzzleHttp\Ring\Future\FutureArray;
 use GuzzleHttp\Ring\Future\FutureArrayInterface;
 use PHPUnit\Framework\TestCase;
@@ -48,7 +48,7 @@ class TransportTest extends TestCase
 
         $this->connection->method('performRequest')
             ->willReturn($future);
-        
+
         $this->connectionPool->method('nextConnection')
             ->willReturn($this->connection);
 
@@ -69,7 +69,7 @@ class TransportTest extends TestCase
 
         $this->connection->method('performRequest')
             ->willReturn($future);
-        
+
         $this->connectionPool->method('nextConnection')
             ->willReturn($this->connection);
 
